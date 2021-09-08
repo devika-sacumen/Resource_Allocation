@@ -1,0 +1,271 @@
+<div class="search-div">
+    <button mat-raised-button (click)="onCreate()">
+      <mat-icon>add</mat-icon>Create
+    </button>
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+<div class="example-container mat-elevation-z8">
+    <mat-table [dataSource]="listData" matSort>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell  *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row" >
+              <mat-radio-button style="margin-bottom: 10px;" (click)="onEdit(row)"></mat-radio-button>
+              <!-- <button mat-icon-button color="warn" (click)="onDelete(row.$key)"><mat-icon>delete_outline</mat-icon></button> -->
+            </mat-cell>
+          </ng-container>
+      <ng-container matColumnDef="customer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Customer</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.customer}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="project">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Project</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.project}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="projectLead">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Lead</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.projectLead}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="teamMember" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Team Member</mat-header-cell>
+        <mat-cell [ngStyle]="{'background-color': element.type === 'Contractor' ? 'yellow' : 'white'}" *matCellDef="let element">{{element.teamMember}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.role}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="type" type="hidden">
+        <mat-header-cell *matHeaderCellDef mat-sort-header type="hidden">Type</mat-header-cell>
+        <mat-cell *matCellDef="let element" type="hidden">{{element.type}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK1">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK1</mat-header-cell>
+        <mat-cell [ngStyle]="{'background-color': (element.wk1) > ('100') ? 'red' : 'white'}" *matCellDef="let element">{{element.wk1}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK2">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK2</mat-header-cell>
+        <mat-cell [ngStyle]="{'background-color': (element.wk2) > ('100') ? 'red' : 'white'}" *matCellDef="let element">{{element.wk2}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK3">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK3</mat-header-cell>
+        <mat-cell [ngStyle]="{'background-color': (element.wk3) > ('100') ? 'red' : 'white'}" *matCellDef="let element">{{element.wk3}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK4">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK4</mat-header-cell>
+        <mat-cell [ngStyle]="{'background-color': (element.wk4) > ('100') ? 'red' : 'white'}" *matCellDef="let element">{{element.wk4}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK5">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK5</mat-header-cell>
+        <mat-cell [ngStyle]="{'background-color': (element.wk5) > ('100') ? 'red' : 'white'}" *matCellDef="let element">{{element.wk5}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK6">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK6</mat-header-cell>
+        <mat-cell [ngStyle]="{'background-color': (element.wk6) > ('100') ? 'red' : 'white'}" *matCellDef="let element">{{element.wk6}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK7">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK7</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk7}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK8">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK8</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk8}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK9">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK9</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk9}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK10">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK10</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk10}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK11">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK11</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk11}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK12">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK12</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk12}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK13">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK13</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk13}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK14">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK14</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk14}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK15">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK15</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk15}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK16">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK16</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk16}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK17">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK17</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk17}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK18">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK18</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk18}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK19">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK19</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk19}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK20">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK20</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk20}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK21">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK21</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk21}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK22">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK22</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk22}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK23">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK23</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk23}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK24">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK24</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk24}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK25">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK25</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk25}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK26">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK26</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk26}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK27">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK27</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk27}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK28">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK28</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk28}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK29">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK29</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk29}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK30">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK30</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk30}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK31">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK31</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk31}}%</mat-cell>
+      </ng-container>
+       <ng-container matColumnDef="WK32">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK32</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk32}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK33">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK33</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk33}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK34">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK34</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk34}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK35">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK35</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk35}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK36">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK36</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk36}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK37">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK37</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk37}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK38">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK38</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk38}}%</mat-cell>
+      </ng-container>
+       <ng-container matColumnDef="WK39">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK39</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk39}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK40">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK40</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk40}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK41">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK41</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk41}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK42">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK42</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk42}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK43">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK43</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk43}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK44">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK44</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk44}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK45">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK45</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk45}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK46">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK46</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk46}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK47">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK47</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk47}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK48">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK48</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk48}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK49">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK49</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk49}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK50">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK50</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk50}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK51">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK51</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk51}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="WK52">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>WK52</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.wk52}}%</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
+      <!-- <mat-header-row *matHeaderRowDef="displayedWeekStartColumns"></mat-header-row> -->
+      <!-- <mat-row *matRowDef="let row; columns: displayedWeekStartColumns;"></mat-row> -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[ 10, 25,50, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+  </div>

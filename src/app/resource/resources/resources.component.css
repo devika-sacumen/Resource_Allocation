@@ -1,0 +1,11 @@
+.card-container {
+    /*  not needed styles to reflect it */ 
+    background: rgb(241, 241, 245);
+    padding: 10px;
+    margin-right: 100px;
+    width: 1450px;
+    align-items: center;
+    /* needed styles below */
+    display: flex;
+    justify-content: space-between;
+  }

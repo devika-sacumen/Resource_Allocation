@@ -1,0 +1,269 @@
+<form [formGroup]="form" class="normal-form" (submit)="onSubmit(form.value)">
+    <div class="controles-container">
+      <input type="hidden" formControlName="id">
+      <mat-form-field>
+        <mat-select formControlName="customer" placeholder="Select Customer" (selectionChange)="onSelectionChanged($event)">
+          <ng-container *ngFor="let cust of Customers">
+            <mat-option [value]="cust">{{cust}}</mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error>Customer Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="project" placeholder="Select Project"  (selectionChange)="onSelectProjectChanged($event)">
+            <ng-container *ngIf="form.get('customer').value as SelectedCustomer">
+          <ng-container *ngFor="let projects of metaCustData[SelectedCustomer]">
+            <mat-option [value]="projects">{{projects}}</mat-option>
+          </ng-container>
+        </ng-container>
+        </mat-select>
+        <mat-error>Project Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="projectLead" placeholder="Select Project Lead" (selectionChange)="onSelectProjectLeadChanged($event)">
+          <ng-container *ngFor="let project_lead of project_leads">
+            <mat-option [value]="project_lead">{{project_lead}}</mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error>Project Lead Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="teamMember" placeholder="Select Team Member" (selectionChange)="onSelectTeamMemberChanged($event)">
+          <ng-container *ngFor="let team_member of team_members">
+            <mat-option [value]="team_member">{{team_member}}</mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error>Team Member Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="role" placeholder="Select Role" [(ngModel)]="selectedRole" >
+        <ng-container *ngIf="form.get('teamMember').value as SelectedTeamMember">
+          <ng-container *ngFor="let roles of metaTeamMemberData[SelectedTeamMember]">
+            <mat-option [value]="roles.role">{{roles.role}}</mat-option>
+          </ng-container>
+        </ng-container>
+        </mat-select>
+        <mat-error>Role Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="type" placeholder="Select Type" [(ngModel)]="selectedType">
+        <ng-container *ngIf="form.get('teamMember').value as SelectedTeamMember">
+          <ng-container *ngFor="let type of metaTeamMemberData[SelectedTeamMember]">
+            <mat-option [value]="type.type">{{type.type}}</mat-option>
+          </ng-container>
+        </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field >
+        <input [disabled]="getWk1()" formControlName="wk1" matInput placeholder="WK1" >
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk2()" formControlName="wk2" matInput placeholder="WK2">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk3()" formControlName="wk3" matInput placeholder="WK3">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk4()" formControlName="wk4" matInput placeholder="WK4">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk5()" formControlName="wk5" matInput placeholder="WK5">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk6()" formControlName="wk6" matInput placeholder="WK6">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk7()" formControlName="wk7" matInput placeholder="WK7">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk8()" formControlName="wk8" matInput placeholder="WK8">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk9()" formControlName="wk9" matInput placeholder="WK9">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk10()" formControlName="wk10" matInput placeholder="WK10">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk11()" formControlName="wk11" matInput placeholder="WK11">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk12()" formControlName="wk12" matInput placeholder="WK12">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk13()" formControlName="wk13" matInput placeholder="WK13">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk14()" formControlName="wk14" matInput placeholder="WK14">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk15()" formControlName="wk15" matInput placeholder="WK15">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk16()" formControlName="wk16" matInput placeholder="WK16">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk17()" formControlName="wk17" matInput placeholder="WK17">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk18()" formControlName="wk18" matInput placeholder="WK18">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk19()" formControlName="wk19" matInput placeholder="WK19">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk20()" formControlName="wk20" matInput placeholder="WK20">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk21()" formControlName="wk21" matInput placeholder="WK21">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk22()" formControlName="wk22" matInput placeholder="WK22">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk23()" formControlName="wk23" matInput placeholder="WK23">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk24()" formControlName="wk24" matInput placeholder="WK24">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk25()" formControlName="wk25" matInput placeholder="WK25">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk26()" formControlName="wk26" matInput placeholder="WK26">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk27()" formControlName="wk27" matInput placeholder="WK27">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk28()" formControlName="wk28" matInput placeholder="WK28">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk29()" formControlName="wk29" matInput placeholder="WK29">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk30()" formControlName="wk30" matInput placeholder="WK30">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk31()" formControlName="wk31" matInput placeholder="WK31">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk32()" formControlName="wk32" matInput placeholder="WK32">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk33()" formControlName="wk33" matInput placeholder="WK33">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk34()" formControlName="wk34" matInput placeholder="WK34">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk35()" formControlName="wk35" matInput placeholder="WK35">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk36()" formControlName="wk36" matInput placeholder="WK36">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk37()" formControlName="wk37" matInput placeholder="WK37">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk38()" formControlName="wk38" matInput placeholder="WK38">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk39()" formControlName="wk39" matInput placeholder="WK39">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk40()" formControlName="wk40" matInput placeholder="WK40">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk41()" formControlName="wk41" matInput placeholder="WK41">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk42()" formControlName="wk42" matInput placeholder="WK42">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk43()" formControlName="wk43" matInput placeholder="WK43">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk44()" formControlName="wk44" matInput placeholder="WK44">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk45()" formControlName="wk45" matInput placeholder="WK45">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk46()" formControlName="wk46" matInput placeholder="WK46">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk47()" formControlName="wk47" matInput placeholder="WK47">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk48()" formControlName="wk48" matInput placeholder="WK48">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk49()" formControlName="wk49" matInput placeholder="WK49">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk50()" formControlName="wk50" matInput placeholder="WK50">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk51()" formControlName="wk51" matInput placeholder="WK51">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input [disabled]="getWk52()" formControlName="wk52" matInput placeholder="WK52">
+        <mat-error>only 3 Numbers Allowed</mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+      </div>
+    </div>
+</form> 
